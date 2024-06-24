@@ -1,7 +1,6 @@
 {
     "version": "0.2.0",
     "configurations": [
-
         {
             "name": "Launch Program",
             "program": "${workspaceFolder}/app.js",
@@ -19,9 +18,22 @@
         },
         {
             "type": "node",
+            "name": "app",
+            "request": "launch",
+            "program": "${workspaceFolder}\\src\\app.js"
+        },
+        {
+            "type": "node",
             "name": "devide",
             "request": "launch",
             "program": "${workspaceFolder}\\src\\controller\\devide\\Devide.js"
+        },
+        {
+            "type": "node-terminal",
+            "name": "Run Script: test",
+            "request": "launch",
+            "command": "npm run test",
+            "cwd": "${workspaceFolder}"
         },
         {
             "type": "node-terminal",

@@ -89,8 +89,13 @@ async function recomendation_maf_generate(attrObject){
   const arealength = parseInt(attr.length);
   const areaWidth  = parseInt(attr.width);
   const budjet = parseFloat(attr.budjet);
+  let recomendetList = [];
+  const resObj = {
+    request
+  };
 
-   const source_maf_list_by_proveder_group = await catalogController.getProviderListByFilter({budjet: budget, length: length, width: width});
+
+   const source_maf_list_by_proveder_group = await catalogController.getProviderListByFilter({budjet: budjet, length: arealength, width: areaWidth});
 
 
 
@@ -133,15 +138,14 @@ const providers_categories = element.groupslist.map(item => {
 // 3. Запустим рекурсию по подбору относительно базовой площади
 const subRes = divideRectangles({length: arealength, width: areaWidth},[],maf_set, budjet, provider_categories) //{budjet: budget, length: length, width: width}
 console.log(subRes);
+
+recomendetList.push(subRes);
   });
 
-
-
- 
-
 // 4. Соберем результат в итоговый obj
+return recomendetList;
 };
-
+/*
 //пример вызова
 const length=500;
 const width=10000;
@@ -157,6 +161,6 @@ const baseCategories = [
 const call = recomendation_maf_generate({budjet: budget, length: length, width: width, baseCategories: baseCategories});
 // функция получаемая на вход набор площадей в формате WGS84, на выходе массив прямоугольник с указанием их сторон
 console.log(call);
-
+*/
 // 
 module.exports = { recomendation_maf_generate};

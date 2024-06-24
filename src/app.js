@@ -1,13 +1,31 @@
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
 const AgeGroup = require('./controller/age_group/Age_group'); 
-const Catalog = require('./models/Catalog'); // Assuming you have a model for Catalog
-const Rating = require('./models/Rating'); // Assuming you have a model for Rating
 const catalogController = require('./controller/catalog/Catalog_controller');
+const ConstructorMaf = require('./controller/constructor_maf/Constructor_maf');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.json());
+
+//создать и вернуть рекомендательную модель
+
+app.post('/api/recomendet_maf_list',async (req, res) => {
+    const { baseCategories, length, width, budget } = req.body;
+  
+    const arealength = parseInt(length);
+    const areaWidth = parseInt(width);
+    const budjet = parseFloat(budget);
+    
+    const recomendetMafList = await ConstructorMaf.recomendation_maf_generate({budjet: budjet, length: length, width: width, baseCategories: baseCategories});
+    // Далее можно проводить операции с полученными данными
+  
+    //res.send('Данные успешно обработаны');
+    res.json(recomendetMafList);
+  });
+
 
 //Запросить возрастные группы по постащику
 app.get('/api/age_group', async (req, res)  =>  {
@@ -46,9 +64,6 @@ app.get('/api/findCombinations', async (req, res)  =>  {
 });
 
 
-
-
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
