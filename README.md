@@ -5,8 +5,9 @@ Moscow in the yard
 Шаг 1: скопируйте репозиторий в папку backend
 git clone https://github.com/DimaGolykh/mity.git
  
-Шаг 2: Create Your MongoDB Account and Database Cluster
-Создайте свою собственную учетную запись MongoDB, посетив веб-сайт MongoDB и зарегистрировав новую учетную запись.
+Шаг 2: ИНсталяция nodejs и БД mongodb
+Для инсталяции окружения Node JS необходимо скачать инсталяционный пакет https://nodejs.org/en
+Для инсталяции MongoDB необходимо скачать инсталяционный пакет https://www.mongodb.com/try/download/community
 Создайте новую базу данных или кластер, следуя инструкциям, приведенным в документации MongoDB. 
 
 Шаг 3: Укажите параметры подключения
