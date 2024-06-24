@@ -91,7 +91,11 @@ async function recomendation_maf_generate(attrObject){
   const budjet = parseFloat(attr.budjet);
   let recomendetList = [];
   /*const resObj = {
-    request
+    baseCategories: baseCategories,
+    arealength: arealength,
+    areaWidth: areaWidth,
+    budjet: budjet,
+    mafListGropByProvider:[],
   };*/
 
 
@@ -134,14 +138,21 @@ const providers_categories = element.groupslist.map(item => {
   const transformation_ageGroup = ageGroup.transferPopulation(baseCategories, providers_categories);
   const provider_categories = transformation_ageGroup;
   const maf_set = element;
+  const provider = maf_set._id
  // console.log(transformation_ageGroup);
 // 3. Запустим рекурсию по подбору относительно базовой площади
 const subRes = divideRectangles({length: arealength, width: areaWidth},[],maf_set, budjet, provider_categories) //{budjet: budget, length: length, width: width}
-console.log(subRes);
+const mafListByProvider = {
+  provider: provider,
+  recomendetList: subRes
+};
 
-recomendetList.push(subRes);
+
+recomendetList.push(mafListByProvider);
   });
 
+
+//console.log(mafListByProvider);
 // 4. Соберем результат в итоговый obj
 return recomendetList;
 };
