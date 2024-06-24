@@ -90,9 +90,9 @@ async function recomendation_maf_generate(attrObject){
   const areaWidth  = parseInt(attr.width);
   const budjet = parseFloat(attr.budjet);
   let recomendetList = [];
-  const resObj = {
+  /*const resObj = {
     request
-  };
+  };*/
 
 
    const source_maf_list_by_proveder_group = await catalogController.getProviderListByFilter({budjet: budjet, length: arealength, width: areaWidth});
